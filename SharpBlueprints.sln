@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBlueprints", "SharpBlueprints\SharpBlueprints.csproj", "{21CA7EA9-7043-4465-9AE1-00619C7D8806}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{8D471FFF-1289-407B-AB22-5DB3DC71C636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBlueprints.WPF", "SharpBlueprints.WPF\SharpBlueprints.WPF.csproj", "{57DE6831-5DF4-435A-BAE6-1D6E689FC764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpBlueprints.WPFDemo", "SharpBlueprints.WPFDemo\SharpBlueprints.WPFDemo.csproj", "{2FA0949B-433C-48D7-BDEF-99C4323DB414}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21CA7EA9-7043-4465-9AE1-00619C7D8806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CA7EA9-7043-4465-9AE1-00619C7D8806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CA7EA9-7043-4465-9AE1-00619C7D8806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CA7EA9-7043-4465-9AE1-00619C7D8806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57DE6831-5DF4-435A-BAE6-1D6E689FC764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57DE6831-5DF4-435A-BAE6-1D6E689FC764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57DE6831-5DF4-435A-BAE6-1D6E689FC764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57DE6831-5DF4-435A-BAE6-1D6E689FC764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FA0949B-433C-48D7-BDEF-99C4323DB414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FA0949B-433C-48D7-BDEF-99C4323DB414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FA0949B-433C-48D7-BDEF-99C4323DB414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FA0949B-433C-48D7-BDEF-99C4323DB414}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2FA0949B-433C-48D7-BDEF-99C4323DB414} = {8D471FFF-1289-407B-AB22-5DB3DC71C636}
+	EndGlobalSection
+EndGlobal
