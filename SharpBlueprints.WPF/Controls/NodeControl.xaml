@@ -21,23 +21,72 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
         <Rectangle
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
             RadiusX="8"
             RadiusY="8"
-            Stroke="#FFAAAAAA"
+            Fill="#FFBBBBBB"
             StrokeThickness="2"
-            Fill="#AA202020">
+            Margin="4,0,4,0">
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, Mode=OneWay}" Value="true">
+                            <Setter Property="Stroke" Value="#FFAAFFAA" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsSelected, Mode=OneWay}" Value="false">
+                            <Setter Property="Stroke" Value="#FFAAAAAA" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
             <Rectangle.Effect>
-                <DropShadowEffect />
+                <DropShadowEffect
+                    ShadowDepth="2" />
             </Rectangle.Effect>
         </Rectangle>
+        
         <Label
             Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
             Foreground="#FFFFFFFF"
+            FontSize="16"
+            Padding="20,2,20,2"
+            HorizontalContentAlignment="Center"
             Content="{Binding Node.Name, Mode=OneWay}">
             <Label.Effect>
-                <DropShadowEffect />
+                <DropShadowEffect
+                    ShadowDepth="2" />
             </Label.Effect>
         </Label>
+        
+        <ItemsControl
+            Grid.Row="1"
+            Grid.Column="0"
+            ItemsSource="{Binding IncomingPinViewModels, Mode=OneWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:PinControl />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <ItemsControl
+            Grid.Row="1"
+            Grid.Column="3"
+            ItemsSource="{Binding OutgoingPinViewModels, Mode=OneWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:PinControl />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

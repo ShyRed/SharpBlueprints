@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="SharpBlueprints.WPF.Controls.ConnectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:SharpBlueprints.WPF.ViewModels"
+             xmlns:local="clr-namespace:SharpBlueprints.WPF.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance vm:ConnectionViewModel}">
+    <Path
+        Stroke="Black"
+        StrokeThickness="2">
+        <Path.Data>
+            <PathGeometry>
+                <PathGeometry.Figures>
+                    <PathFigureCollection>
+                        <PathFigure StartPoint="{Binding PinStart.AbsolutePosition, Mode=OneWay}">
+                            <PathFigure.Segments>
+                                <PathSegmentCollection>
+                                    <BezierSegment
+                                        Point1="{Binding CheckpointStart, Mode=OneWay}"
+                                        Point2="{Binding CheckpointEnd, Mode=OneWay}"
+                                        Point3="{Binding PinEnd.AbsolutePosition, Mode=OneWay}"/>
+                                </PathSegmentCollection>
+                            </PathFigure.Segments>
+                        </PathFigure>
+                    </PathFigureCollection>
+                </PathGeometry.Figures>
+            </PathGeometry>
+        </Path.Data>
+    </Path>
+</UserControl>

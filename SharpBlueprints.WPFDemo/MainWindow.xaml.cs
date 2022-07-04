@@ -25,11 +25,19 @@ namespace SharpBlueprints.WPFDemo
         public MainWindow()
         {
             InitializeComponent();
-
             var nodeGraph = new NodeGraph();
             nodeGraph.Nodes.Add(new Node() { Name = "Start", PositionX = 10, PositionY = 10 });
             nodeGraph.Nodes.Add(new Node() { Name = "Do Stuff", PositionX = 210, PositionY = 110 });
             nodeGraph.Nodes.Add(new Node() { Name = "End", PositionX = 410, PositionY = 50 });
+        
+            nodeGraph.Nodes[0].OutgoingPins.Add(new Pin() { Name = "Exec" });
+            nodeGraph.Nodes[1].IncomingPins.Add(new Pin() { Name = "Exec" });
+            nodeGraph.Nodes[1].OutgoingPins.Add(new Pin() { Name = "Exec" });
+            nodeGraph.Nodes[2].IncomingPins.Add(new Pin() { Name = "Exec" });
+
+            nodeGraph.Nodes[0].OutgoingPins[0].ConnectedTo = nodeGraph.Nodes[1].IncomingPins[0];
+            nodeGraph.Nodes[1].OutgoingPins[0].ConnectedTo = nodeGraph.Nodes[2].IncomingPins[0];
+
             DataContext = new NodeGraphViewModel(nodeGraph);
         }
     }
