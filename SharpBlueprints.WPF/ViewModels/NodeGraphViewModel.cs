@@ -103,6 +103,16 @@ public partial class NodeGraphViewModel : ObservableObject
             _nodeViewModels[2].IncomingPinViewModels[0]));
     }
 
+    public void SelectNodes(IEnumerable<NodeViewModel> nodeViewModels)
+    {
+        SelectedNodeViewModels = nodeViewModels;
+    }
+
+    public void DeselectAll()
+    {
+        SelectedNodeViewModels = Array.Empty<NodeViewModel>();
+    }
+
     private void OnNodeSelectionReceived(object sender, NodeSelectionMessage msg)
     {
         if (msg.DeselectPrevious)

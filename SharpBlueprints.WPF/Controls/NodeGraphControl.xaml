@@ -11,8 +11,12 @@
     <Grid
         ClipToBounds="True">
         <Canvas
+            x:Name="NodeGraphCanvas"
             Height="10000"
-            Width="10000">
+            Width="10000"
+            MouseLeftButtonDown="OnNodeGraphCanvasLeftMouseButtonDown"
+            MouseLeftButtonUp="OnNodeGraphCanvasLeftMouseButtonUp"
+            MouseMove="OnNodeGraphCanvasMouseMove">
             <Canvas.Background>
                 <DrawingBrush
                     TileMode="Tile"
@@ -46,6 +50,7 @@
             </ItemsControl>
             
             <ItemsControl
+                x:Name="Nodes"
                 ItemsSource="{Binding NodeViewModels, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -58,6 +63,14 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            
+            <Border
+                x:Name="BoxSelectionBorder"
+                Background="#3300FF00"
+                BorderThickness="1"
+                BorderBrush="#FF00CC00"
+                CornerRadius="1"
+                Visibility="Hidden" />
             
         </Canvas>
     </Grid>
