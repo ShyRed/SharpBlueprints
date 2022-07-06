@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 using SharpBlueprints.WPF.ViewModels;
 
 namespace SharpBlueprints.WPF.Controls;
@@ -18,10 +19,37 @@ public partial class NodeGraphControl : UserControl
 
     private bool _isBoxSelecting;
     private Point _boxSelectStartingPoint;
+
+    private bool _isCanvasDragging;
+    private bool _isCanvasMovedDuringDrag;
+    private Point _canvasDragStartPosition;
+    private Vector _canvasDragStartOffset;
     
     public NodeGraphControl()
     {
         InitializeComponent();
+    }
+
+    private void OnNodeGraphCanvasRightMouseButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        _isCanvasDragging = true;
+        _canvasDragStartPosition = e.GetPosition(this);
+        _canvasDragStartOffset = NodeGraphCanvas.RenderTransform is TranslateTransform currentTransform
+            ? new Vector(currentTransform.X, currentTransform.Y)
+            : new Vector();
+        NodeGraphCanvas.CaptureMouse();
+        e.Handled = true;
+    }
+
+    private void OnNodeGraphCanvasRightMouseButtonUp(object sender, MouseButtonEventArgs e)
+    {
+        if (!_isCanvasDragging)
+            return;
+
+        _isCanvasDragging = false;
+        NodeGraphCanvas.ReleaseMouseCapture();
+        Mouse.OverrideCursor = null;
+        e.Handled = true;
     }
 
     private void OnNodeGraphCanvasLeftMouseButtonDown(object sender, MouseButtonEventArgs e)
@@ -38,7 +66,7 @@ public partial class NodeGraphControl : UserControl
         NodeGraphCanvas.CaptureMouse();
         e.Handled = true;
     }
-
+    
     private void OnNodeGraphCanvasLeftMouseButtonUp(object sender, MouseButtonEventArgs e)
     {
         if (!_isBoxSelecting)
@@ -57,6 +85,24 @@ public partial class NodeGraphControl : UserControl
 
     private void OnNodeGraphCanvasMouseMove(object sender, MouseEventArgs e)
     {
+        if (_isCanvasDragging)
+        {
+            if (e.RightButton == MouseButtonState.Released)
+                _isCanvasDragging = false;
+            else
+            {
+                var offset = _canvasDragStartOffset + e.GetPosition(this) - _canvasDragStartPosition;
+                NodeGraphCanvas.RenderTransform = new TranslateTransform(
+                    Math.Min(0.0, offset.X),
+                    Math.Min(0.0, offset.Y));
+                _isCanvasMovedDuringDrag = true;
+                Mouse.OverrideCursor = Cursors.ScrollAll;
+            }
+            
+            e.Handled = true;
+            return;
+        }
+        
         if (!_isBoxSelecting)
             return;
 

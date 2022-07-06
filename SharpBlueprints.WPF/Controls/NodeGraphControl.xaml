@@ -14,9 +14,13 @@
             x:Name="NodeGraphCanvas"
             Height="10000"
             Width="10000"
+            MouseRightButtonDown="OnNodeGraphCanvasRightMouseButtonDown"
+            MouseRightButtonUp="OnNodeGraphCanvasRightMouseButtonUp"
             MouseLeftButtonDown="OnNodeGraphCanvasLeftMouseButtonDown"
             MouseLeftButtonUp="OnNodeGraphCanvasLeftMouseButtonUp"
             MouseMove="OnNodeGraphCanvasMouseMove">
+            
+            <!-- Grid lines -->
             <Canvas.Background>
                 <DrawingBrush
                     TileMode="Tile"
@@ -35,6 +39,7 @@
                 </DrawingBrush>
             </Canvas.Background>
             
+            <!-- Connections between pins -->
             <ItemsControl
                 ItemsSource="{Binding Connections, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
@@ -49,6 +54,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             
+            <!-- Nodes -->
             <ItemsControl
                 x:Name="Nodes"
                 ItemsSource="{Binding NodeViewModels, Mode=OneWay}">
@@ -64,6 +70,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             
+            <!-- Selection border (visible during selection) -->
             <Border
                 x:Name="BoxSelectionBorder"
                 Background="#3300FF00"

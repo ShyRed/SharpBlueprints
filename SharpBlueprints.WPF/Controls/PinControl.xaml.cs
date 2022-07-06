@@ -29,7 +29,7 @@ public partial class PinControl : UserControl
         var context = PinDataContext;
         context.AbsolutePosition = Connector.TranslatePoint(
             new Point(Connector.ActualWidth * 0.5, Connector.ActualHeight * 0.5),
-            nodeGraphControl);
+            nodeGraphControl.NodeGraphCanvas);
     }
 
     private NodeGraphControl? FindGraphControl()
